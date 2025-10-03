@@ -1,2 +1,3 @@
 # TugasMagangNetkrom
-Repository ini berisi tugas yang diberikan oleh pendamping/mentor di PT. NetKrom saat magang
+
+pada branch ini, kami belajar memasang library <b>dompdf</b> menggunakan <i>composer</i> dan mencoba mengaplikasikannya.
