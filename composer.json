@@ -1,0 +1,16 @@
+{
+    "name": "salsabilaj/tugas-magang-netkrom",
+    "description": "mencoba bermain composer",
+    "autoload": {
+        "psr-4": {
+            "Salsabilaj\\TugasMagangNetkrom\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jamilsalsabila",
+            "email": "jamilsalsabila@gmail.com"
+        }
+    ],
+    "require": {}
+}
