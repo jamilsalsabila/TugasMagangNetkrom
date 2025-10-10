@@ -13,8 +13,9 @@ return new class extends Migration {
         Schema::create('tbl_penerbit', function (Blueprint $table) {
             $table->id();
             $table->string('namapenerbit');
+            $table->string('alamat');
+            $table->string('kontak');
             $table->timestamps();
-
         });
     }
 
