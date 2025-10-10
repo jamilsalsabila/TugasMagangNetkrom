@@ -12,7 +12,7 @@ class Penerbitmodel extends Model
     //use HasUuids;
 
     protected $table = "tbl_penerbit";
-    protected $fillable = ["namapenerbit"];
+    protected $fillable = ["namapenerbit", "alamat", "kontak"];
 
     public $incrementing = true;
 

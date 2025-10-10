@@ -18,6 +18,8 @@ class PenerbitmodelFactory extends Factory
     {
         return [
             "namapenerbit" => $this->faker->words(2, true),
+            "alamat" => $this->faker->address(),
+            "kontak" => $this->faker->phoneNumber(),
         ];
     }
 }

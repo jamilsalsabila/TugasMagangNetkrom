@@ -21,7 +21,7 @@ class BukumodelFactory extends Factory
             "judul" => $this->faker->words(2, true),
             "pengarang" => $this->faker->name(),
             "harga" => $this->faker->numerify("##000"),
-            "idpenerbit" => $this->faker->numberBetween(1, 2)
+            "idpenerbit" => $this->faker->numberBetween(1, 5)
         ];
     }
 }
