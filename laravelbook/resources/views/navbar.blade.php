@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a href="{{ URL::to('penerbit') }}" class="nav-link" aria-current="page">Daftar Penerbit</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ URL::to('buku/laporan') }}" class="nav-link" aria-current="page">Laporan Buku</a>
+                </li>
             </ul>
         </div>
         <div class="navbar-nav">

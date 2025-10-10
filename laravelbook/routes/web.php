@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Penerbit;
 use App\Http\Controllers\Userlogin;
+use App\Models\Bukumodel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Buku;
 
@@ -48,6 +49,9 @@ Route::post('login', [Userlogin::class, 'login'])->middleware('guest');
 Route::get('login/logout', [Userlogin::class, 'logout'])->middleware('auth');
 
 
-
+/*
+RUTE CETAK DAFTAR BUKU
+*/
+ROute::get('buku/laporan', [Buku::class, 'cetakdaftarbuku']);
 
 

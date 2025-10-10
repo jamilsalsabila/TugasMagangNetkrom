@@ -12,7 +12,7 @@ class Bukumodel extends Model
     use HasFactory;
     //use HasUuids;
     protected $table = "tbl_buku";
-    protected $fillable = ["kodebuku", "judul", "pengarang", "harga", "idpenerbit"];
+    protected $fillable = ["kodebuku", "judul", "pengarang", "harga", "idpenerbit", "gambar"];
 
     public function penerbit()
     {

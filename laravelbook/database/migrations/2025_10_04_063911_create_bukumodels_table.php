@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->String('pengarang');
             $table->integer('harga')->default(0);
             $table->foreignId('idpenerbit')->nullable()->constrained('tbl_penerbit', 'id')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
 

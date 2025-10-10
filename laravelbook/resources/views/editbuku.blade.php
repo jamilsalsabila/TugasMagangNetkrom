@@ -6,7 +6,8 @@
 @section('konten')
     <div class="container mt-4">
         <h1>{{ $judul }}</h1>
-        <form action="{{ url('buku') }}" method="post" id="applications" data-parsley-validate>
+        <form action="{{ url('buku') }}" enctype="multipart/form-data" method="post" id="applications"
+            data-parsley-validate>
             @method('patch')
             @csrf
             <div class="mb-3 col-6">
@@ -41,9 +42,9 @@
                 @enderror
             </div>
             <div class="mb-3 col-6">
-                <label for="penerbit" class="form-label @error('idpenerbit') is-invalid
-                @enderror">Penerbit</label>
-                <select class="form-select" name="idpenerbit" id="idpenerbit">
+                <label for="penerbit" class="form-label">Penerbit</label>
+                <select class="form-select @error('idpenerbit') is-invalid
+                @enderror" name="idpenerbit" id="idpenerbit">
                     @foreach ($daftarpenerbit as $item)
                         <option value="{{ $item->id }}" {{ old('idpenerbit', $item->id == $data->idpenerbit ? 'selected' : '') }}>
                             {{ $item->namapenerbit }}
@@ -53,6 +54,22 @@
                 @error('idpenerbit')
                     <div class="invalid-feedback">{{  $message }}</div>
                 @enderror
+
+            </div>
+
+            <div class="mb-3 col-6">
+                <label for="gambar" class="form-label"> Foto </label>
+                <input class="form-control @error('gambar') is-invalid 
+                @enderror" type="file" name="gambar" id="gambar">
+                @error('gambar')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+
+                @if ($data->gambar)
+                    <img src="{{ asset('/storage/images') }}/{{ $data->kodebuku }}/{{  $data->gambar }}" height="200">
+                @else
+                    <img src="{{ asset("/storage/images/No_Image_Available.jpg") }}" height="200">
+                @endif
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

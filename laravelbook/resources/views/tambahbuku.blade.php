@@ -6,7 +6,8 @@
 @section('konten')
     <div class="container mt-4">
         <h1>{{ $judul }}</h1>
-        <form action="{{ URL::to('buku') }}" method="post" id="applications" data-parsley-validate>
+        <form action="{{ URL::to('buku') }}" enctype="multipart/form-data" method="post" id="applications"
+            data-parsley-validate>
             @csrf
             <div class="mb-3 col-6">
                 <label for="kodebuku" class="form-label">Kode Buku</label>
@@ -52,6 +53,14 @@
                     @endforeach
                 </select>
                 @error('idpenerbit')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3 col-6">
+                <label for="gambar" class="form-label"> Foto </label>
+                <input class="form-control @error('gambar') is-invalid 
+                @enderror" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}">
+                @error('gambar')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
