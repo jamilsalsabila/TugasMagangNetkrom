@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->unsignedInteger('harga');
             $table->unsignedTinyInteger('kapasitas');
             $table->string('fasilitas');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
