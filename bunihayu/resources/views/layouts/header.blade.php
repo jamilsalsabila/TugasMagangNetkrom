@@ -13,25 +13,37 @@
 
 @endphp
 
-<ul class="nav">
-    <li class="nav-item">
-        <div class="container text-center" style="background-color: green;">
-            <a class="nav-link active" aria-current="page" href="{{ url('product') }}">
-                <img src="{{ asset('/storage/images/logo-bunihayu.png') }}" alt="" height="50" width="200">
-            </a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a href="product" class="navbar-brand">
+        <img src="{{ asset('/storage/images/logo-bunihayu.png') }}" width="200" height="40" class="img-fluid">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" style="color: aliceblue; margin-right: 10px;">
+                <p>Good {{ $greeting }}, Admin</p>
+            </li>
+            <li class="nav-item" style="color: aliceblue;">
+                <p id="digitalClock"></p>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            @if (Auth::check())
+                <a href="{{ url('login/logout') }}" class="nav-link px-3">Sign Out</a>
+            @else
+                <a href="{{ url('login') }}" class="nav-link px-3">Sign In</a>
+            @endif
         </div>
-    </li>
-    <li class="nav-item">
-        <div class="container justify-content-start ">
-            <p>Good {{ $greeting }}, Admin</p>
-        </div>
-    </li>
-    <li class="nav-item">
-        <div class="container justify-content-start ">
-            <p id="digitalClock"></p>
-        </div>
-    </li>
-</ul>
+    </div>
+</nav>
 
 <script>
     function updateClock() {

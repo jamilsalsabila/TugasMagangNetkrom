@@ -8,8 +8,13 @@
 
 @section('content')
     <div class="container-md ">
-        <div class="row ">
-            <div class="d-grid gap-2 col-6 mx-auto">
+        <div class="row">
+            <div class="col text-end">
+                <span>
+                    << </span>
+                        <a href="{{ url('product') }}">Kembali</a>
+            </div>
+            <div class="col d-grid gap-2 col-6 mx-auto">
                 <form action="{{ url('product') }}" enctype="multipart/form-data" method="post" id="applications"
                     data-parsley-validate>
                     @method('post')

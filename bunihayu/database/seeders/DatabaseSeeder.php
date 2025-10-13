@@ -22,5 +22,19 @@ class DatabaseSeeder extends Seeder
         //]);
 
         Produk::factory(10)->create();
+
+        User::create([
+            "name" => "admin",
+            "email" => "admin@bunihayu.com",
+            "password" => bcrypt("Dede1234."),
+            'isadmin' => true,
+        ]);
+
+        User::create([
+            'name' => 'user',
+            'email' => 'user@bunihayu.com',
+            'password' => bcrypt('Aa2222..'),
+            'isadmin' => false,
+        ]);
     }
 }
