@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" style="color: aliceblue; margin-right: 10px;">
-                <p>Good {{ $greeting }}, Admin</p>
+                <p>Good {{ $greeting }}, {{ auth()->user()->name }}</p>
             </li>
             <li class="nav-item" style="color: aliceblue;">
                 <p id="digitalClock"></p>

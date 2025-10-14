@@ -9,30 +9,33 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\UserRegister;
 
 
-Route::get('admin', [Admin::class, 'index']);
+//Route::get('admin', [Admin::class, 'index']);
 
-Route::get('/', [Product::class, 'show']);
+/*
+RUTE LANDING PAGE
+*/
+Route::get('/', [Product::class, 'show'])->middleware('guest');
 
 /*
 RUTE PRODUK
 */
-Route::get('product', [ProductController::class, 'index']);
-Route::get('product/create', [ProductController::class, 'create']);
-Route::post('product', [ProductController::class, 'save']);
-Route::get('product/show/{id}', [ProductController::class, 'show']);
-Route::get('product/edit/{id}', [ProductController::class, 'edit']);
-Route::patch('product', [ProductController::class, 'update']);
-Route::delete('product', [ProductController::class, 'delete']);
+Route::get('product', [ProductController::class, 'index'])->middleware('auth');
+Route::get('product/create', [ProductController::class, 'create'])->middleware('onlyadmin');
+Route::post('product', [ProductController::class, 'save'])->middleware('onlyadmin');
+Route::get('product/show/{id}', [ProductController::class, 'show'])->middleware('auth');
+Route::get('product/edit/{id}', [ProductController::class, 'edit'])->middleware('onlyadmin');
+Route::patch('product', [ProductController::class, 'update'])->middleware('onlyadmin');
+Route::delete('product', [ProductController::class, 'delete'])->middleware('onlyadmin');
 
 /*
 RUTE LOGIN, LOGOUT
 */
-Route::get('login', [Userlogin::class, 'index']);
-Route::post('login', [Userlogin::class, 'signin']);
-Route::get('login/logout', [Userlogin::class, 'signout']);
+Route::get('login', [Userlogin::class, 'index'])->name('login')->middleware('guest');
+Route::post('login', [Userlogin::class, 'signin'])->middleware('guest');
+Route::get('login/logout', [Userlogin::class, 'signout'])->middleware('auth');
 
 /*
 RUTE REGISTER
 */
-Route::get('register', [UserRegister::class, 'get']);
-Route::post('register', [UserRegister::class, 'post']);
+Route::get('register', [UserRegister::class, 'get'])->middleware('guest');
+Route::post('register', [UserRegister::class, 'post'])->middleware('guest');

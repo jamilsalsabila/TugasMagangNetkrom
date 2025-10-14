@@ -17,7 +17,9 @@
         </div>
     @endif
     <div class="container">
-        <a href="{{ url('product/create') }}"><button class="btn btn-primary btn-md">Add Product</button></a>
+        @can('onlyadmin')
+            <a href="{{ url('product/create') }}"><button class="btn btn-primary btn-md">Add Product</button></a>
+        @endcan
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($data as $item)
                 <div class="col">
@@ -31,21 +33,23 @@
                             <h5 class="card-title">{{ $item->nama }}</h5>
                             <p class="card-text">{{ $item->deskripsi }}</p>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{ url("product/edit/$item->id") }}"><button class="btn btn-primary btn-sm"> Edit
-                                    </button></a>
+                        @can('onlyadmin')
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url("product/edit/$item->id") }}"><button class="btn btn-primary btn-sm"> Edit
+                                        </button></a>
+                                </div>
+                                <div class="col">
+                                    <form onsubmit="if(!confirm('apakah anda yakin mau menghapus data ini?')){return false;}"
+                                        action="{{ url('product') }}" data-parsley-validate id="application" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="col">
-                                <form onsubmit="if(!confirm('apakah anda yakin mau menghapus data ini?')){return false;}"
-                                    action="{{ url('product') }}" data-parsley-validate id="application" method="post">
-                                    @method('delete')
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $item->id }}">
-                                    <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
-                                </form>
-                            </div>
-                        </div>
+                        @endcan
                     </div>
                 </div>
             @endforeach
