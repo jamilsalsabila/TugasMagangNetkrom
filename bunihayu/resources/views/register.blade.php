@@ -12,7 +12,7 @@
             <div class="col text-end">
                 <span>
                     << </span>
-                        <a href="{{ url(session()->previousUrl()) }}">Kembali</a>
+                        <a href="{{ url('product') }}">Kembali</a>
             </div>
             <div class="col d-grid gap-2 col-6 mx-auto">
                 <form action="{{ url('register') }}" method="post" id="applications" data-parsley-validate>

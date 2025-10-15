@@ -14,7 +14,7 @@ use App\Http\Controllers\UserRegister;
 /*
 RUTE LANDING PAGE
 */
-Route::get('/', [Product::class, 'show'])->middleware('guest');
+Route::get('/', [Product::class, 'show'])->name('home')->middleware('guest');
 
 /*
 RUTE PRODUK

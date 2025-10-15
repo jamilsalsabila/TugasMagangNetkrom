@@ -76,7 +76,7 @@
         @endif
         <div class="d-flex mt-5 mb-5">
 
-            <a href="{{ uri('product') }}"><img src="{{ asset('/storage/images/logo-bunihayu.png') }}" alt=""
+            <a href="{{ uri('/') }}"><img src="{{ asset('/storage/images/logo-bunihayu.png') }}" alt=""
                     class="img-fluid"></a>
         </div>
         <form data-parsley-validate id="applications" action="{{ url('login') }}" method="post">

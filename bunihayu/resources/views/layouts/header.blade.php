@@ -27,7 +27,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" style="color: aliceblue; margin-right: 10px;">
-                <p>Good {{ $greeting }}, {{ auth()->user()->name }}</p>
+                @if (Auth::check())
+
+                    <p>Good {{ $greeting }}, {{ auth()->user()->name }}</p>
+                @else
+
+                    <p>Good {{ $greeting }}, Guest</p>
+                @endif
             </li>
             <li class="nav-item" style="color: aliceblue;">
                 <p id="digitalClock"></p>
