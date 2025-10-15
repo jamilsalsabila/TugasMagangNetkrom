@@ -49,7 +49,7 @@ class ProductController extends Controller
 
         $foto = $request->file('foto');
         $namaFile = $foto->getClientOriginalName();
-        $foto->storeAs("images/$request->nama", $namaFile, 'public');
+        $foto->storeAs("images", $namaFile, 'public');
 
         $data = [
             'nama' => $request->input('nama'),
@@ -121,7 +121,7 @@ class ProductController extends Controller
 
             //Storage::disk('public')->deleteDirectory("images/$request->nama");
 
-            $foto->storeAs("images/$request->nama", $namaFile, 'public');
+            $foto->storeAs("images", $namaFile, 'public');
             $data['foto'] = $namaFile;
         }
         Produk::where('id', $request->input('id'))->update($data);
@@ -133,7 +133,7 @@ class ProductController extends Controller
     {
         $data = Produk::find($request->id);
         Produk::where('id', $data->id)->delete();
-        Storage::disk('public')->deleteDirectory("images/$data->nama");
+        Storage::disk('public')->delete("images/$data->foto");
         return redirect(url('product'))->with('success', 'data berhasil di hapus');
     }
 }

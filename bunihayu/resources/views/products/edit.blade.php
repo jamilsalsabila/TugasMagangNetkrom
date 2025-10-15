@@ -73,7 +73,7 @@
                             <div class="invalid-feedback"> {{ $message }}</div>
                         @enderror
                         @if ($data->foto)
-                            <img src="{{ asset("storage/images/$data->nama/$data->foto") }}" alt="" height="200">
+                            <img src="{{ asset("storage/images/$data->foto") }}" alt="" height="200">
                         @else
                             <img src="{{ asset("storage/images/No_Image_Available.jpg") }}" alt="" height="200">
                         @endif

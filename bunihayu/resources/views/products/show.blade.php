@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col d-flex justify-content-md-center">
                 @if ($data->foto)
-                    <img src="{{ asset("storage/images/$data->nama/$data->foto") }}" alt="" height="200">
+                    <img src="{{ asset("storage/images/$data->foto") }}" alt="" height="200">
                 @else
                     <img src="{{ asset("storage/images/No_Image_Available.jpg") }}" alt="" height="200">
                 @endif

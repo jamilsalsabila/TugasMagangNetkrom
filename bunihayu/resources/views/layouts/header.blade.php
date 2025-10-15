@@ -13,11 +13,12 @@
 
 @endphp
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a href="product" class="navbar-brand">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <!-- Logo -->
+    <a href="{{ url('/') }}" class="navbar-brand">
         <img src="{{ asset('/storage/images/logo-bunihayu.png') }}" width="200" height="40" class="img-fluid">
     </a>
+
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +26,8 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" style="color: aliceblue; margin-right: 10px;">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item" style="color: aliceblue; margin-right: 10px; padding:5px">
                 @if (Auth::check())
 
                     <p>Good {{ $greeting }}, {{ auth()->user()->name }}</p>
@@ -35,11 +36,31 @@
                     <p>Good {{ $greeting }}, Guest</p>
                 @endif
             </li>
-            <li class="nav-item" style="color: aliceblue;">
-                <p id="digitalClock"></p>
+            <li class="nav-item" style="color: aliceblue; margin-right: 10px; padding: 5px;">
+                <p id="digitalClock" style="margin-right: 4px;"></p>
             </li>
+
         </ul>
     </div>
+
+    @can('auth')
+        <!-- Search -->
+        <div class="navbar-nav">
+            <div class="nav-item">
+                <form action="{{ uri('search') }}" method="post" data-parsley-validate id="applications">
+                    @csrf
+                    <div class="form-group">
+                        <div class="row">
+                            <input type="text" name="query" id="query" class="form-control" aria-describedby="search"
+                                placeholder="search...">
+                            <i class="bi bi-search"></i>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endcan
+
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
             @if (Auth::check())

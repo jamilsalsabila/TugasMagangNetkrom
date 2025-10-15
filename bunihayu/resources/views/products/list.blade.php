@@ -25,7 +25,7 @@
                 <div class="col">
                     <div class="card h-100">
                         @if ($item->foto)
-                            <img src="{{ asset('/storage/images') }}/{{ $item->nama }}/{{ $item->foto }}" class="card-img-top">
+                            <img src="{{ asset('/storage/images') }}/{{ $item->foto }}" class="card-img-top">
                         @else
                             <img src="{{ asset('/storage/images') }}/No_Image_Available.jpg" class="card-img-top">
                         @endif

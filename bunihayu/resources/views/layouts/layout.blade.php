@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body style="margin-top: 70px;">
 
     @yield('header')
 
