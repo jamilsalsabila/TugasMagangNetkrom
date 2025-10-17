@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Comments;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,11 @@ class User extends Authenticatable
         'password',
         'isadmin',
     ];
+
+    public function comment()
+    {
+        return $this->hasMany(Comments::class, 'id_user', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

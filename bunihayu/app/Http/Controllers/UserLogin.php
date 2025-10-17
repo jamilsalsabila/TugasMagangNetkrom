@@ -17,6 +17,9 @@ class UserLogin extends Controller
             "data" => [],
         ];
 
+        if (!session()->has('loginerror')) {
+            session(['url.intended' => url()->previous()]);
+        }
         return view("login", $param);
     }
 
@@ -32,7 +35,7 @@ class UserLogin extends Controller
             // jangan lupa kode session nya di generate ulang
             $request->session()->regenerate();
             // alihkan ke halaman produk
-            return redirect()->intended("/product");
+            return redirect()->intended('/home');
         }
 
         return back()->with('loginerror', 'Login Gagal');

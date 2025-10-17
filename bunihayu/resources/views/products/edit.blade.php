@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="container-md ">
+    <div class="parent container" style="margin-top: 50px">
         <div class="row ">
             <div class="d-grid gap-2 col-6 mx-auto">
                 <form action="{{ url('product') }}" enctype="multipart/form-data" method="post" id="applications"
@@ -64,6 +64,16 @@
                             <div class="invalid-feedback"> {{ $message }}</div>
                         @enderror
                     </div>
+
+                    <!-- TERSEDIA -->
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input type="checkbox" name="tersedia" id="tersedia" role="switch" class="form-check-input"
+                                value="1" {{ old('tersedia', $data->tersedia == '1' ? 'checked' : '') }}>
+                            <label for="tersedia" class="form-label"> Tersedia? </label>
+                        </div>
+                    </div>
+
                     <!-- FOTO -->
                     <div class="mb-3">
                         <label for="foto" class="form-label"> Foto </label>

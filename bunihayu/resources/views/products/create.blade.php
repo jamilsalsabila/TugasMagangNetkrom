@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container-md ">
+    <div class="parent container" style="margin-top: 50px;">
         <div class="row">
             <div class="col text-end">
                 <span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Comments;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -68,11 +69,13 @@ class ProductController extends Controller
     public function show($id)
     {
         $produk = Produk::findOrFail($id);
-
+        $comments = Comments::latest()->where('id_produk', intval($id))->get();
+        //dd($comments);
         $param = [
             'modulename' => 'ProductController',
             'title' => "show - $produk->id",
             'data' => $produk,
+            'comments' => $comments,
         ];
 
         return view('products.show', $param);
@@ -113,7 +116,10 @@ class ProductController extends Controller
             'harga' => $request->input('harga'),
             'kapasitas' => $request->input('kapasitas'),
             'fasilitas' => $request->input('fasilitas'),
+            'tersedia' => $request->input('tersedia') ?? '0',
         ];
+
+        //dd($data);
 
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');

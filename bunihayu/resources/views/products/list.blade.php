@@ -7,57 +7,81 @@
 @endsection
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @elseif (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-    <div class="container">
-        @can('onlyadmin')
-            <a href="{{ url('product/create') }}"><button class="btn btn-primary btn-md">Add Product</button></a>
-        @endcan
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach ($data as $item)
-                <div class="col">
-                    <div class="card h-100">
-                        @if ($item->foto)
-                            <img src="{{ asset('/storage/images') }}/{{ $item->foto }}" class="card-img-top">
-                        @else
-                            <img src="{{ asset('/storage/images') }}/No_Image_Available.jpg" class="card-img-top">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $item->nama }}</h5>
-                            <p class="card-text">{{ $item->deskripsi }}</p>
-                        </div>
-                        @can('onlyadmin')
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url("product/edit/$item->id") }}"><button class="btn btn-primary btn-sm"> Edit
-                                        </button></a>
-                                </div>
-                                <div class="col">
-                                    <form onsubmit="if(!confirm('apakah anda yakin mau menghapus data ini?')){return false;}"
-                                        action="{{ url('product') }}" data-parsley-validate id="application" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
-                                        <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
-                                    </form>
-                                </div>
+    <main style="">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        <div class="container">
+            @can('onlyadmin')
+            <div style="margin-bottom: 10px; margin-top: 5px">
+                <a href="{{ url('product/create') }}"><button class="btn btn-primary btn-md">Add Product</button></a>
+            </div>
+            @endcan
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @foreach ($data as $item)
+                    <div class="col">
+                        <div class="card h-100">  <!-- h-100 -->
+                            <div class="embed-responsive embed-responsive-16by9" style="padding: 17px">
+                            @if ($item->foto)
+                                <img src="{{ asset('/storage/images') }}/{{ $item->foto }}" class="card-img-top embed-responsive-item" style=".card-img-top {object-fit: cover;}">
+                            @else
+                                <img src="{{ asset('/storage/images') }}/No_Image_Available.jpg" class="card-img-top embed-responsive-item" style=".card-img-top {object-fit: cover;}">
+                            @endif
                             </div>
-                        @endcan
+                            
+                            <div class="card-body">
+                                <!-- nama -->
+                                <h5 class="card-title" style="padding: 5px;"><a href="{{ url('product/show') }}/{{ $item->id }}">{{ $item->nama }}</a></h5>
+
+                                <!-- deskripsi -->
+                                <div style="width: fit-content; height: 200px; overflow: auto; margin-bottom: 10px; padding: 5px; border: 1px solid #ccc">
+                                {{ $item->deskripsi }} </div>
+
+                                <!-- fasilitas -->
+                                 
+                                <!-- tersedia? -->
+                                @if ($item->tersedia == '1')
+                                    <div style="background-color: #41A67E;width: 100%; font-weight: bolder; color: white;"
+                                        class="card-text"><p style="padding: 5px;">KOSONG</p></div>
+                                @else
+                                    <div style="background-color: #FF3F7F;width: 100%; font-weight: bolder; color: white;"
+                                        class="card-text"><p style="padding: 5px;">TERISI</p></div>
+                                @endif
+
+                            </div>
+
+                            @can('onlyadmin')
+                                <div class="row" style="margin: 3px; padding: 3px">
+                                    <div class="col">
+                                        <a href="{{ url("product/edit/$item->id") }}"><button class="btn btn-primary btn-sm"> Edit
+                                            </button></a>
+                                    </div>
+                                    <div class="col">
+                                        <form onsubmit="if(!confirm('apakah anda yakin mau menghapus data ini?')){return false;}"
+                                            action="{{ url('product') }}" data-parsley-validate id="application" method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endcan
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        {{ $data->links() }}
-    </div>
+        <div class="d-flex justify-content-center">
+            {{ $data->links() }}
+        </div>
+    </main>
 
 @endsection
 

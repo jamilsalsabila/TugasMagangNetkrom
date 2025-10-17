@@ -8,6 +8,7 @@ use App\Http\Controllers\Landing;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\UserRegister;
 use App\Http\Controllers\Search;
+use App\Http\Controllers\UserComments;
 
 
 //Route::get('admin', [Admin::class, 'index']);
@@ -33,7 +34,7 @@ RUTE LOGIN, LOGOUT
 */
 Route::get('login', [Userlogin::class, 'index'])->name('login')->middleware('guest');
 Route::post('login', [Userlogin::class, 'signin'])->middleware('guest');
-Route::get('login/logout', [Userlogin::class, 'signout'])->middleware('auth');
+Route::get('logout', [Userlogin::class, 'signout'])->middleware('auth');
 
 /*
 RUTE REGISTER
@@ -47,3 +48,8 @@ RUTE SEARCH
 */
 Route::get('search', [Search::class, 'index'])->middleware('auth');
 Route::post('search', [Search::class, 'query'])->middleware('auth');
+
+/*
+RUTE COMMENTS
+*/
+Route::post('product/show/{id}', [UserComments::class, 'add']);

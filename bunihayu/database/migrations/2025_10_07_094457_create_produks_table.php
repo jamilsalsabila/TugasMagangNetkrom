@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->unsignedTinyInteger('kapasitas');
             $table->string('fasilitas');
             $table->string('foto')->nullable();
+            $table->enum('tersedia', [0, 1])->default('1');
             $table->timestamps();
         });
     }

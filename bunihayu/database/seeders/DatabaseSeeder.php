@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Produk;
+use App\Models\Comments;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,5 +37,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Aa2222..'),
             'isadmin' => false,
         ]);
+
+        Comments::factory(10)->create();
     }
 }
