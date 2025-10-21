@@ -10,7 +10,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset("css/rating.css") }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <div class="parent container" style="margin-top: 50px;">
+    <div class="parent container" style="margin-top: 150px;">
         @if (session()->has('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

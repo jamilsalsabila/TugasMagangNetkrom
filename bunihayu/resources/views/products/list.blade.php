@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <main style="">
+    <main style="margin-top:71px;">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -20,7 +20,9 @@
         <div class="container">
             @can('onlyadmin')
             <div style="margin-bottom: 10px; margin-top: 5px">
-                <a href="{{ url('product/create') }}"><button class="btn btn-primary btn-md">Add Product</button></a>
+                <a href="{{ url('product/create') }}" style="margin-right: 20px;"><button class="btn btn-primary btn-md">Add Product</button></a>
+                <a href="{{ url('fasilitas') }}"><button class="btn btn-primary btn-sm">Fasilitas</button></a>
+                <a href="{{ url('gallery') }}"><button class="btn btn-primary btn-sm">Gallery</button></a>
             </div>
             @endcan
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -40,11 +42,11 @@
                                 <h5 class="card-title" style="padding: 5px;"><a href="{{ url('product/show') }}/{{ $item->id }}">{{ $item->nama }}</a></h5>
 
                                 <!-- deskripsi -->
-                                <div style="width: fit-content; height: 200px; overflow: auto; margin-bottom: 10px; padding: 5px; border: 1px solid #ccc">
+                                <div style="width: 100%; height: 200px; overflow: auto; margin-bottom: 10px; padding: 5px; border: 1px solid #ccc">
                                 {{ $item->deskripsi }} </div>
 
                                 <!-- fasilitas -->
-                                 
+
                                 <!-- tersedia? -->
                                 @if ($item->tersedia == '1')
                                     <div style="background-color: #41A67E;width: 100%; font-weight: bolder; color: white;"

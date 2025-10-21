@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Produk::paginate(6);
+        $products = Produk::latest()->paginate(6);
         $param = [
             "modulename" => "ProductController",
             "title" => "List Product",
@@ -39,7 +39,7 @@ class ProductController extends Controller
             'harga' => 'required|numeric',
             'kapasitas' => 'required|integer',
             'fasilitas' => 'nullable|string',
-            'foto' => 'required|max:10000',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'nama.required' => 'Nama Perlu diisi',
             'deskripsi.required' => 'deskripsi perlu diisi',
@@ -94,20 +94,27 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
-
-        $request->validate([
+        $rules = [
             'nama' => 'required|string|max:100',
             'deskripsi' => 'required|string',
             'harga' => 'required|numeric',
             'kapasitas' => 'required|integer',
             'fasilitas' => 'nullable|string',
-            //'foto' => 'required|max:10000',
-        ], [
+        ];
+
+        $params = [
             'nama.required' => 'Nama Perlu diisi',
             'deskripsi.required' => 'deskripsi perlu diisi',
             'harga.required' => 'harga perlu diisi',
             'kapasitas.required' => 'kapasitas perlu diisi',
-        ]);
+        ];
+
+        if ($request->hasFile('foto')) {
+            $rules['foto'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $params['foto.required'] = 'foto perlu diinput';
+        }
+
+        $request->validate($rules, $params);
 
 
         $data = [
@@ -125,11 +132,12 @@ class ProductController extends Controller
             $foto = $request->file('foto');
             $namaFile = $foto->getClientOriginalName();
 
-            //Storage::disk('public')->deleteDirectory("images/$request->nama");
+            Storage::disk('public')->delete("images/$request->foto");
 
             $foto->storeAs("images", $namaFile, 'public');
             $data['foto'] = $namaFile;
         }
+
         Produk::where('id', $request->input('id'))->update($data);
 
         return redirect(url('product'))->with('success', 'data berhasil di update');

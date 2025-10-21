@@ -7,12 +7,14 @@
 @endsection
 
 @section('content')
-    <div class="parent container" style="margin-top: 50px;">
+    <div class="parent container" style="margin-top: 90px; ">
+        <div class="row-sm-3"></div>
         <div class="row">
+            <div class="col">
+                <img src="{{ asset('storage/images/product-development.png') }}" style="width: 100%; height: auto;">
+            </div>
             <div class="col text-end">
-                <span>
-                    << </span>
-                        <a href="{{ url('product') }}">Kembali</a>
+                <a href="{{ url('product') }}">Kembali</a>
             </div>
             <div class="col d-grid gap-2 col-6 mx-auto">
                 <form action="{{ url('product') }}" enctype="multipart/form-data" method="post" id="applications"

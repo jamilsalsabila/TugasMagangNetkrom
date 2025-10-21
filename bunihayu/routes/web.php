@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Product;
 use App\Http\Controllers\Userlogin;
+use App\Http\Controllers\Fasilitas;
+use App\Http\Controllers\Gallery;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Landing;
@@ -9,14 +11,16 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\UserRegister;
 use App\Http\Controllers\Search;
 use App\Http\Controllers\UserComments;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use App\Mail\ContactUs;
 
 //Route::get('admin', [Admin::class, 'index']);
 
 /*
 RUTE LANDING PAGE
 */
-Route::get('/', [Product::class, 'show'])->name('home');
+Route::get('/', [Landing::class, 'index'])->name('home');
 
 /*
 RUTE PRODUK
@@ -53,3 +57,39 @@ Route::post('search', [Search::class, 'query'])->middleware('auth');
 RUTE COMMENTS
 */
 Route::post('product/show/{id}', [UserComments::class, 'add']);
+
+
+/*
+RUTE GALLERY
+*/
+Route::get('gallery', [Gallery::class, 'add'])->middleware('onlyadmin');
+Route::post('gallery', [Gallery::class, 'save'])->middleware('onlyadmin');
+Route::get('gallery/edit/{id}', [Gallery::class, 'edit'])->middleware('onlyadmin');
+Route::patch('gallery', [Gallery::class, 'saveedit'])->middleware('onlyadmin');
+Route::delete('gallery', [Gallery::class, 'delete'])->middleware('onlyadmin');
+
+/*
+RUTE FASILITAS 
+*/
+Route::get('fasilitas', [Fasilitas::class, 'add'])->middleware('onlyadmin');
+Route::post('fasilitas', [Fasilitas::class, 'save'])->middleware('onlyadmin');
+Route::get('fasilitas/edit/{id}', [Fasilitas::class, 'edit'])->middleware('onlyadmin');
+Route::patch('fasilitas', [Fasilitas::class, 'saveedit'])->middleware('onlyadmin');
+Route::delete('fasilitas', [Fasilitas::class, 'delete'])->middleware('onlyadmin');
+
+
+/*
+RUTE Contact Us
+*/
+Route::post('contactus', function (Request $request) {
+    $data = [
+        'subject' => 'Pesan dari pengunjung',
+        'nama' => $request->input('nama'),
+        'hp' => $request->input('hp'),
+        'email' => $request->input('email'),
+        'pesan' => $request->input('pesan'),
+    ];
+
+    Mail::to("msalsabilajamil@gmail.com")->send(new ContactUs($data));
+    return redirect(url('/#contactus'))->with("contactUsSuccess", "terima kasih atas pesannya");
+});

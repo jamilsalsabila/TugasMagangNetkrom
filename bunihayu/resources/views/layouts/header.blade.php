@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -31,15 +31,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav mr-auto mt-2 mt-lg-0">
             @if (Auth::check())
-
                 <div class="nav-item" style="color: aliceblue; margin-right: 10px;">
-
                     <p>Good {{ $greeting }}, {{ auth()->user()->name }}</p>
                 </div>
 
                 <div class="nav-item" style="color: aliceblue; margin-right: 10px;">
                     <p id="digitalClock"></p>
                 </div>
+
+
             @else
                 <div class="nav-item" style="color: aliceblue; margin-right: 10px;">
 
@@ -50,18 +50,13 @@
         </div>
     </div>
 
-    <!-- list of product -->
-    @if (Auth::check())
-        <div class="navbar-nav">
-            <div class="nav-item" style="color: aliceblue; padding: 5px; margin: auto">
-                <a href="{{ url('product') }}" class="nav-link px-3">List of Product</a>
-            </div>
-        </div>
-    @endif
 
     @can('auth')
         <!-- Search -->
         <div class="navbar-nav">
+            <div class="nav-item" style="color: aliceblue; padding: 5px; margin: auto">
+                <a href="{{ url('product') }}" class="nav-link px-3">List of Product</a>
+            </div>
             <div class="nav-item" style="margin-left: 100px; margin-right: 100px;">
                 <form action="{{ uri('search') }}" method="post" data-parsley-validate id="applications">
                     @csrf

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top: 150px;">
         @foreach ($data as $item)
             <div class="row">
                 <div class="col">

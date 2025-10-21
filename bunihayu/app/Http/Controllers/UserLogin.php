@@ -35,7 +35,7 @@ class UserLogin extends Controller
             // jangan lupa kode session nya di generate ulang
             $request->session()->regenerate();
             // alihkan ke halaman produk
-            return redirect()->intended('/home');
+            return redirect()->intended('/');
         }
 
         return back()->with('loginerror', 'Login Gagal');
@@ -49,6 +49,6 @@ class UserLogin extends Controller
         // token dibuat ulang yang baru
         request()->session()->regenerateToken();
 
-        return redirect(url('login'));
+        return redirect()->intended('/');
     }
 }
