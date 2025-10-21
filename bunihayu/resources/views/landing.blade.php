@@ -437,7 +437,7 @@
 
         // Mapbox Map
 
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic2phbWlsIiwiYSI6ImNtZ3lybm5seDAyNDAya3BzdnBpZHY3dXMifQ.5Hi_zT9Uavbameol5u5Qpw';
+        mapboxgl.accessToken = "{{ config('mapbox.mapbox_token') }}";
         const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v12',
