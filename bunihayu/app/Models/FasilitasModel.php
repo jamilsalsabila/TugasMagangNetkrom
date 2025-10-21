@@ -11,4 +11,5 @@ class FasilitasModel extends Model
 
     protected $table = "fasilitas";
     protected $fillable = ["nama", "foto"];
+
 }

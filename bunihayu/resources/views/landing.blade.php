@@ -356,61 +356,57 @@
                     <table class="table">
                         <tbody>
                             <tr>
-
-                            <tr><img src="{{ asset('storage/images/instagram.png') }}" width="30"></tr>
-                            <tr><a href="https://www.instagram.com/bunihayu.forest/?hl=en">
+                                <img src="{{ asset('storage/images/instagram.png') }}" width="30">
+                                <a href="https://www.instagram.com/bunihayu.forest/?hl=en">
                                     bunihayu.forest
-                                </a></tr>
-
-
+                                </a>
                             </tr>
                             <tr>
 
-                            <tr><img src="{{ asset('storage/images/website.png') }}" width="30"></tr>
-                            <tr><a href="https://www.bunihayu.com/">
+                                <img src="{{ asset('storage/images/website.png') }}" width="30">
+                                <a href="https://www.bunihayu.com/">
                                     https://www.bunihayu.com/
-                                </a></tr>
+                                </a>
 
                             </tr>
                             <tr>
 
-                            <tr><img src="{{ asset('storage/images/whatsapp.png') }}" width="30"></tr>
-                            <tr><a href="https://wa.me/6285729296893">
+                                <img src="{{ asset('storage/images/whatsapp.png') }}" width="30">
+                                <a href="https://wa.me/6285729296893">
                                     Admin
-                                </a></tr>
+                                </a>
 
 
                             </tr>
                             <tr>
 
-                            <tr><img src="{{ asset('storage/images/email.png') }}" width="30"></tr>
-                            <tr><a href="mailto:RM.bunihayuforest@temp.co.id">email us</a></tr>
+                                <img src="{{ asset('storage/images/email.png') }}" width="30">
+                                <a href="mailto:RM.bunihayuforest@temp.co.id">email us</a>
 
                             </tr>
                             <tr>
-                            <tr><img src="{{ asset('storage/images/office-building.png') }}" width="30"></tr>
-                            <tr><a href="https://maps.app.goo.gl/uGyc94LTMFd5TvdZA" target="_blank">Alamat
-                                    Kantor</a></tr>
-
+                                <img src="{{ asset('storage/images/office-building.png') }}" width="30">
+                                <a href="https://maps.app.goo.gl/uGyc94LTMFd5TvdZA" target="_blank">
+                                    Alamat Kantor
+                                </a>
                             </tr>
 
                             <tr>
 
                                 @if(Auth::check())
-                                    <tr>
-                                        <img src="{{ asset('storage/images/close.png') }}" width="30">
-                                    </tr>
-                                    <tr>
-                                        <a href="{{ url('logout') }}">Logout</a>
-                                    </tr>
+
+                                    <img src="{{ asset('storage/images/close.png') }}" width="30">
+
+
+                                    <a href="{{ url('logout') }}">Logout</a>
+
                                 @else
-                                <tr>
+
                                     <img src="{{ asset('storage/images/login2.png') }}" width="30">
-                                </tr>
-                                <tr>
+
                                     <a href="{{ url('login') }}">Login</a>
-                                </tr>
-                            @endif
+
+                                @endif
                             </tr>
 
                         </tbody>

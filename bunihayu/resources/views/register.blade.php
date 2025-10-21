@@ -7,12 +7,13 @@
 @endsection
 
 @section('content')
-    <div class="container-md ">
+    <div class="container-md" style="margin-top: 100px;">
         <div class="row">
+            <div class="col">
+                <img src="{{ asset('storage/images/register.png') }}" style="width: 100%; height: auto;">
+            </div>
             <div class="col text-end">
-                <span>
-                    << </span>
-                        <a href="{{ url()->previous()}}">Kembali</a>
+                <a href="{{ url()->previous()}}">Kembali</a>
             </div>
             <div class="col d-grid gap-2 col-6 mx-auto">
                 <form action="{{ url('register') }}" method="post" id="applications" data-parsley-validate>
